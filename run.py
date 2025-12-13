@@ -5,7 +5,7 @@ import time
 
 destinos_romania = [['A', 'B'], ['O', 'E'], ['G', 'Z'], ['N', 'D'], ['M', 'F']]
 
-for x in range(0, 1):
+for x in range(0, 5):
     total_start_time = time.perf_counter()
 
     ab = search.GPSProblem(destinos_romania[x][0], destinos_romania[x][1]
@@ -16,13 +16,12 @@ for x in range(0, 1):
 
     #node, n_open, n_close, cost = search.breadth_first_graph_search(ab)
     #node, n_open, n_close, cost = search.depth_first_graph_search(ab)
-    node, n_open, n_close, cost = search.bab(ab)
-    #node, n_open, n_close, cost = search.babh(ab)
+    #node, n_open, n_close, cost = search.bab(ab)
+    node, n_open, n_close, cost = search.babh(ab)
 
     print(node.path())
 
     total_time = time.perf_counter() - total_start_time
-
 
     print(f"Nodos generados: {n_open}; Nodos visitados: {n_close}; Coste total: {cost}")
     print(f"Tiempo total tardado: {total_time*1000000:.1f}μs\n")

@@ -108,7 +108,12 @@ def graph_search(problem, fringe, bab=None, babh=None):
         if node.state not in closed:
             closed[node.state] = True
             temp = node.expand(problem)
-            fringe.extend(temp)
+            if bab or babh:
+                for child in temp:
+                    if child.state not in closed:
+                        fringe.extend([child])
+            else:
+                fringe.extend(temp)
             open += len(temp)
             if bab:
                 fringe.sort(key=lambda x: x.path_cost, reverse=True)
